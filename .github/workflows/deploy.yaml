@@ -17,7 +17,7 @@ on:
 
 jobs:
     deploy-call:
-        runs-on: [k8s-agent]
+        runs-on: [ubuntu-latest]
         steps:
             - uses: cschleiden/replace-tokens@v1
               with:
@@ -26,4 +26,4 @@ jobs:
                 tokenSuffix: '${{ inputs.sufix }}'
 
             - name: Deploying
-              run: kubectl apply -f ${{ inputs.PATH }}
+              run: cat ./kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
