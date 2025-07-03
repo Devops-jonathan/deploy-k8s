@@ -22,7 +22,7 @@ jobs:
     deploy-call:
         environment: 
             name: ${{ inputs.env }}
-        runs-on: [ubuntu-latest]
+        runs-on: [k8s]
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v4
