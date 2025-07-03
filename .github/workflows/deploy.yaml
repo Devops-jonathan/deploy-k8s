@@ -24,6 +24,9 @@ jobs:
             name: ${{ inputs.env }}
         runs-on: [ubuntu-latest]
         steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+              
             - uses: cschleiden/replace-tokens@v1
               with:
                 files: '${{ inputs.files }}'
@@ -37,4 +40,4 @@ jobs:
             - name: Deploying
               run: |
                ls -r
-               cat ./kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
+               cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
