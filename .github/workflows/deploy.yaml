@@ -26,4 +26,6 @@ jobs:
                 tokenSuffix: '${{ inputs.sufix }}'
 
             - name: Deploying
-              run: cat ./kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
+              run: |
+               ls -r
+               cat ./kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
