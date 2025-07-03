@@ -28,6 +28,10 @@ jobs:
                 files: '${{ inputs.files }}'
                 tokenPrefix: '${{ inputs.prefix }}'
                 tokenSuffix: '${{ inputs.sufix }}'
+              env:
+                NAMESPACE: ${{ vars.NAMESPACE }}
+                IMAGE: S
+                REPLICAS: ${{ vars.REPLICAS }}
 
             - name: Deploying
               run: |
