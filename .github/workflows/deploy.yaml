@@ -17,6 +17,9 @@ on:
             env:
                 required: true
                 type: string
+            image: 
+                required: true
+                type: string
 
 jobs:
     deploy-call:
@@ -34,7 +37,7 @@ jobs:
                 tokenSuffix: '${{ inputs.sufix }}'
               env:
                 NAMESPACE: ${{ vars.NAMESPACE }}
-                IMAGE: S
+                IMAGE: ${{ inputs.image }}
                 REPLICAS: ${{ vars.REPLICAS }}
 
             - name: Deploying
