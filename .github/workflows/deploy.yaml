@@ -1,0 +1,29 @@
+name: Deploying
+on: 
+    workflow_call: 
+        inputs:
+            sufix:
+                required: true
+                type: string
+            prefix:
+                required: true
+                type: string
+            files:
+                required: true
+                type: string
+            path:
+                required: true
+                type: string
+
+jobs:
+    deploy-call:
+        runs-on: [k8s-agent]
+        steps:
+            - uses: cschleiden/replace-tokens@v1
+              with:
+                files: '${{ inputs.files }}'
+                tokenPrefix: '${{ inputs.prefix }}'
+                tokenSuffix: '${{ inputs.sufix }}'
+
+            - name: Deploying
+              run: kubectl apply -f ${{ inputs.PATH }}
