@@ -20,7 +20,8 @@ on:
 
 jobs:
     deploy-call:
-        environment: ${{ inputs.env }}
+        environment: 
+            name: ${{ inputs.env }}
         runs-on: [ubuntu-latest]
         steps:
             - uses: cschleiden/replace-tokens@v1
