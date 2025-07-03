@@ -14,9 +14,13 @@ on:
             path:
                 required: true
                 type: string
+            env:
+                required: true
+                type: string
 
 jobs:
     deploy-call:
+        environment: ${{ inputs.env }}
         runs-on: [ubuntu-latest]
         steps:
             - uses: cschleiden/replace-tokens@v1
