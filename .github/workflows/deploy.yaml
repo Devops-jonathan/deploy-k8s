@@ -23,6 +23,7 @@ on:
 
 jobs:
     deploy-call:
+        continue-on-error: true
         environment: 
             name: ${{ inputs.env }}
         runs-on: [k8s]
