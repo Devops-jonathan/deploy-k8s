@@ -44,6 +44,7 @@ jobs:
               name: Installing kubectl
 
             - name: Deploying
+              shell: pwsh
               run: |
                #kubectl get pods 
                cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
