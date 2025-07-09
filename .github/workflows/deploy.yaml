@@ -20,10 +20,12 @@ on:
             image: 
                 required: true
                 type: string
+        secrets:
+          k8s-config:
+            required: true
 
 jobs:
     deploy-call:
-        continue-on-error: true
         environment: 
             name: ${{ inputs.env }}
         runs-on: [k8s]
@@ -41,6 +43,14 @@ jobs:
                 IMAGE: ${{ inputs.image }}
                 REPLICAS: ${{ vars.REPLICAS }}
 
+            - uses: azure/setup-kubectl@v4
+              name: Installing kubectl
+
+            - uses: azure/k8s-set-context@v4
+              with:
+                method: kubeconfig
+                kubeconfig: ${{ secrets.k8s-config }}
+                context: <context name> # current-context from kubeconfig is used as default
             - name: Deploying
               run: |
                cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
