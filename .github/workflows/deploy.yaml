@@ -20,9 +20,6 @@ on:
             image: 
                 required: true
                 type: string
-        secrets:
-          k8s-config:
-            required: true
 
 jobs:
     deploy-call:
@@ -49,8 +46,9 @@ jobs:
             - uses: azure/k8s-set-context@v4
               with:
                 method: kubeconfig
-                kubeconfig: ${{ secrets.k8s-config }}
-                context: <context name> # current-context from kubeconfig is used as default
+                kubeconfig: ${{ secrets.K8S_CONFIG }}
+                context: 'devops-admin' # current-context from kubeconfig is used as default
             - name: Deploying
               run: |
+               kubectl get pods 
                cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
