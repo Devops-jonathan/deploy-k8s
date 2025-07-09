@@ -43,12 +43,15 @@ jobs:
             - uses: azure/setup-kubectl@v4
               name: Installing kubectl
 
+            - name: Deploying
+              run: |
+               #kubectl get pods 
+               cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
+               ${{ secrets }} | ConvertFrom-Json | Write-Host
+
             - uses: azure/k8s-set-context@v4
               with:
                 method: kubeconfig
-                kubeconfig: ${{ secrets.K8S_CONFIG }}
-                context: 'devops-admin' # current-context from kubeconfig is used as default
-            - name: Deploying
-              run: |
-               kubectl get pods 
-               cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
+                kubeconfig: '${{ secrets.K8S_CONFIG }}'
+
+            
