@@ -55,9 +55,9 @@ jobs:
 
             - name: Deploying
               shell: pwsh
-              run: |
-               kubectl get pods 
-               cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
+              run: | 
+               kubectl apply -f ${{ inputs.PATH }}
+               kubectl get deploy -n ${{ vars.NAMESPACE }}
 
             
 
