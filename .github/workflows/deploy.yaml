@@ -20,6 +20,9 @@ on:
             image: 
                 required: true
                 type: string
+        secrets:
+            test:
+                required: true
 
 jobs:
     deploy-call:
