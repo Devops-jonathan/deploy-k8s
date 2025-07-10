@@ -21,7 +21,7 @@ on:
                 required: true
                 type: string
         secrets:
-            test:
+            K8S_CONFIG:
                 required: true
 
 jobs:
@@ -49,9 +49,8 @@ jobs:
             - name: Deploying
               shell: pwsh
               run: |
-               #kubectl get pods 
+               kubectl get pods 
                cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
-               "${{ toJSON(secrets) }}" | Write-Host
 
             - uses: azure/k8s-set-context@v4
               with:
