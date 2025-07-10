@@ -26,6 +26,7 @@ on:
 
 jobs:
     deploy-call:
+        continue-on-error: true
         environment: 
             name: ${{ inputs.env }}
         runs-on: [k8s]
@@ -50,6 +51,7 @@ jobs:
               with:
                 method: kubeconfig
                 kubeconfig: '${{ secrets.K8S_CONFIG }}'
+                context: devops-admin
 
             - name: Deploying
               shell: pwsh
