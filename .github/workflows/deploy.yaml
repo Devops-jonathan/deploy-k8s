@@ -46,15 +46,17 @@ jobs:
             - uses: azure/setup-kubectl@v4
               name: Installing kubectl
 
+            - uses: azure/k8s-set-context@v4
+              with:
+                method: kubeconfig
+                kubeconfig: '${{ secrets.K8S_CONFIG }}'
+
             - name: Deploying
               shell: pwsh
               run: |
                kubectl get pods 
                cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
 
-            - uses: azure/k8s-set-context@v4
-              with:
-                method: kubeconfig
-                kubeconfig: '${{ secrets.K8S_CONFIG }}'
+            
 
             
