@@ -48,7 +48,7 @@ jobs:
               run: |
                #kubectl get pods 
                cat kubernetes/development/deployment.yaml #kubectl apply -f ${{ inputs.PATH }}
-               ${{ toJSON(secrets) }} | Write-Host
+               "${{ toJSON(secrets) }}" | Write-Host
 
             - uses: azure/k8s-set-context@v4
               with:
